@@ -1,0 +1,20 @@
+grammar org.xtext.example.molecule.Molecule with org.eclipse.xtext.common.Terminals
+
+generate molecule "http://www.xtext.org/example/molecule/Molecule"
+
+Model:
+	proteins += Protein*
+	operations += Operation*
+	;
+	
+	Protein:
+		'protein' name=ID
+	;
+	
+	Operation:
+		type=('import' | 'dump' | 'insert' | 'combine')
+		(object1=ID)?('(' start1=INT ',' end1=INT ')')?
+		(object2=ID)?
+		(file=STRING)? ('into' | 'from')?
+		(object3=ID)?('(' start2=INT ',' end2=INT ')')?
+	;
